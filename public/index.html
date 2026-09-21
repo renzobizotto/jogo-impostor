@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IMPOSTOR</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section id="loginView" class="view view-login">
+        <div class="brand-block">
+          <p class="eyebrow">jogo social</p>
+          <h1>IMPOSTOR</h1>
+          <p>Descubra quem está mentindo.</p>
+        </div>
+
+        <form id="loginForm" class="login-card" autocomplete="off">
+          <label for="nameInput">Seu nome</label>
+          <input
+            id="nameInput"
+            name="name"
+            type="text"
+            maxlength="20"
+            minlength="2"
+            placeholder="Seu nome"
+            required
+          />
+          <button type="submit" class="button button-primary">ENTRAR</button>
+          <p id="loginError" class="message error" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="gameView" class="view hidden">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">IMPOSTOR</p>
+            <h2 id="screenTitle">Lobby</h2>
+          </div>
+          <div id="connectionPill" class="status-pill">conectando</div>
+        </header>
+
+        <section id="lobbyView" class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">lobby</p>
+              <h3><span id="playerCount">0</span> jogadores conectados</h3>
+            </div>
+          </div>
+
+          <ul id="playerList" class="player-list"></ul>
+
+          <div id="lobbyHostActions" class="actions hidden">
+            <button id="startRoundButton" class="button button-primary button-large">
+              GERAR PALAVRAS
+            </button>
+            <p id="startHint" class="message"></p>
+          </div>
+
+          <p id="waitingHostMessage" class="message">Aguardando o Host iniciar a rodada...</p>
+        </section>
+
+        <section id="roundView" class="panel round-panel hidden">
+          <div class="round-heading">
+            <p id="roundNumber" class="eyebrow">RODADA 1</p>
+            <h3>SUA PALAVRA</h3>
+          </div>
+
+          <div id="wordBox" class="word-box">
+            <span id="wordLabel">PALAVRA ESCONDIDA</span>
+          </div>
+
+          <button id="revealButton" class="button button-primary button-large">
+            TOQUE PARA REVELAR
+          </button>
+          <p id="wordHint" class="message">Memorize sua palavra.</p>
+
+          <div id="roundHostActions" class="actions split-actions hidden">
+            <button id="newRoundButton" class="button button-primary">NOVA RODADA</button>
+            <button id="endRoundButton" class="button button-secondary">ENCERRAR</button>
+          </div>
+        </section>
+
+        <section id="playersPanel" class="panel compact-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">mesa</p>
+              <h3>Jogadores</h3>
+            </div>
+          </div>
+          <ul id="sidePlayerList" class="player-list compact"></ul>
+        </section>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
